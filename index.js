@@ -5,7 +5,9 @@ const form = document.querySelector("form");
 const errMessage = document.querySelector(".err-message");
 const btn = document.querySelector('[type="button"]');
 
-const regExp = /\w*@[a-z]*\.[a-z]*/g;
+const regExp = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
+// /\w*@[a-z]*\.[a-z]*/gi
+// /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
 const errDisplay = function (errorMessage) {
   input.style.borderColor = "hsl(354, 100%, 66%)";
@@ -13,18 +15,19 @@ const errDisplay = function (errorMessage) {
 };
 
 const validation = function () {
-  if (!regExp.test(input.value)) {
-    errDisplay("Please provide a valid email address");
-  }
-
   if (input.value.trim() === "") {
     errDisplay("Whoops! It looks like you forgot to add your email");
+    return;
+  }
+
+  if (!regExp.test(input.value.trim())) {
+    errDisplay("Please provide a valid email address");
+    return;
   }
 };
 
 form.addEventListener("submit", function (e) {
   e.preventDefault();
-
   validation();
 });
 
