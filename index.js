@@ -3,7 +3,6 @@
 const input = document.querySelector('[type="text"]');
 const form = document.querySelector("form");
 const errMessage = document.querySelector(".err-message");
-const btn = document.querySelector('[type="button"]');
 
 const regExp = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
 // /\w*@[a-z]*\.[a-z]*/gi
@@ -28,9 +27,5 @@ const validation = function () {
 
 form.addEventListener("submit", function (e) {
   e.preventDefault();
-  validation();
-});
-
-btn.addEventListener("click", function () {
   validation();
 });
